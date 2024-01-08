@@ -35,18 +35,20 @@ var createNewTaskElement=function(taskString){
   listItem.className="todo__list-item";
 
   label.innerText=taskString;
-  label.className="item";
+  label.className="todo__list-item-text item";
 
   //Each elements, needs appending
   checkBox.type="checkbox";
+  checkBox.className="todo__list-item-checkbox";
   editInput.type="text";
-  editInput.className="item";
+  editInput.className="todo__list-item-input item";
 
   editButton.innerText="Edit"; //innerText encodes special characters, HTML does not.
-  editButton.className="todo__list-item-button button-edit";
+  editButton.className="button todo__list-item-button button-edit";
 
-  deleteButton.className="todo__list-item-button button-delete";
+  deleteButton.className="button todo__list-item-button button-delete";
   deleteButtonImg.src="./remove.svg";
+  deleteButtonImg.className="todo__list-item-button-icon"
   deleteButton.appendChild(deleteButtonImg);
 
 
@@ -84,17 +86,19 @@ var editTask=function(){
 
   var listItem=this.parentNode;
 
+
   var editInput=listItem.querySelector("input[type=text]");
   var label=listItem.querySelector("label");
   var editBtn=listItem.querySelector(".button-edit");
   var containsClass=listItem.classList.contains("todo__list-item_edit-mode");
+  console.log({ containsClass });
   //If class of the parent is .editmode
-  if(containsClass){
-
+  if(containsClass) {
     //switch to .editmode
     //label becomes the inputs value.
     label.innerText=editInput.value;
     editBtn.innerText="Edit";
+
   }else{
     editInput.value=label.innerText;
     editBtn.innerText="Save";
@@ -128,6 +132,7 @@ var taskCompleted=function(){
 
 }
 
+// todo__completed-item
 
 var taskIncomplete=function(){
   console.log("Incomplete Task...");
